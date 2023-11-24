@@ -13,4 +13,4 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-git-branch-cleaner = "git_delete_branch.cli:say_command"
+git-branch-cleaner = "git_branch_cleaner.cli:say_command"

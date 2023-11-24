@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "git-delete-branch"
+name = "git-branch-cleaner"
 version = "0.1.0"
 description = ""
 authors = ["Ren Dela Cruz <ren_delacruz@outlook.com>"]
@@ -13,4 +13,4 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-git-delete-branch = "git_delete_branch.cli:say_hello"
+git-branch-cleaner = "git_delete_branch.cli:say_command"

@@ -3,6 +3,24 @@ include .makefile.inc
 ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
 $(eval $(ARGS):;@:)
 
+## Code Analysis
+
+.PHONY: format
+format: ## Run black to format
+	pre-commit run -a black
+
+.PHONY: lint
+lint: ## Run flake8 to lint
+	pre-commit run -a flake8
+
+.PHONY: sort
+sort: ## Run isort to sort imports
+	pre-commit run -a isort
+
+.PHONY: type-check
+type-check: ## Run mypy to type check
+	pre-commit run -a mypy
+
 ## Dependencies
 
 .PHONY: install

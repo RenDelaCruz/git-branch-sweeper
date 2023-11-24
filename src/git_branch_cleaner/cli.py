@@ -1,4 +1,9 @@
-from git_branch_cleaner.main import main
+import typer
+
+
+def main() -> None:
+    print("Hello from CLI")
+
 
 if __name__ == "__main__":
-    main()
+    typer.run(main)

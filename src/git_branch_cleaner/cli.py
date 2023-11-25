@@ -4,7 +4,6 @@ from InquirerPy import inquirer, utils
 
 
 def main() -> None:
-    print()
     style = utils.get_style(  # 48A8B5
         {
             "question": "bold",
@@ -28,13 +27,13 @@ def main() -> None:
             .decode()
             .rstrip()
         )
-    except subprocess.CalledProcessError as e:
-        print(e.output)
+    except subprocess.CalledProcessError:
         return
 
     results = raw_results.split("\n")
     current_branches = [branch for branch in results if branch]
 
+    print()
     branches = inquirer.checkbox(
         message="Select branches to delete:",
         choices=current_branches,

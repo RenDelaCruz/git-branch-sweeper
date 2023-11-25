@@ -20,13 +20,20 @@ def main() -> None:
         },
         style_override=False,
     )
-    raw_results = (
-        subprocess.check_output("git branch '--format=%(refname:lstrip=2)'", shell=True)
-        .decode()
-        .rstrip()
-        .split("\n")
-    )
-    current_branches = [branch for branch in raw_results if branch]
+    try:
+        raw_results = (
+            subprocess.check_output(
+                "git branch '--format=%(refname:lstrip=2)'", shell=True
+            )
+            .decode()
+            .rstrip()
+        )
+    except subprocess.CalledProcessError as e:
+        print(e.output)
+        return
+
+    results = raw_results.split("\n")
+    current_branches = [branch for branch in results if branch]
 
     branches = inquirer.checkbox(
         message="Select branches to delete:",

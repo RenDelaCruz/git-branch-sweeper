@@ -18,10 +18,11 @@ def main() -> None:
         choices=git.branches,
         style=DEFAULT_STYLE,
         transformer=lambda result: f"{len(result)} branch{'es' if len(result) != 1 else ''} selected",
-        instruction=f"(use <space> to select)\n  Current branch: {git.current_branch}",
+        instruction=f"(use [space] to select, or [a] to toggle all)\n  Current branch: {git.current_branch}",
         show_cursor=False,
         raise_keyboard_interrupt=False,
         mandatory=False,
+        keybindings={"toggle-all": [{"key": "a"}]},
     ).execute()
 
     if not selected_branches:

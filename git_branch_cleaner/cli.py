@@ -6,6 +6,9 @@ from git_branch_cleaner.styles import DEFAULT_STYLE, GREEN, ORANGE_BOLD_UNDERLIN
 
 def main() -> None:
     git = Git()
+    if not git.branches:
+        print("Only 1 branch found. Cannot delete the currently checked-out branch.")
+        return
 
     print()
     selected_branches = inquirer.checkbox(

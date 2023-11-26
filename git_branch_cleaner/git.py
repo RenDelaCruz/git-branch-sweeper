@@ -8,7 +8,7 @@ class Git:
         try:
             results = (
                 subprocess.check_output(
-                    "git branch '--format=%(refname:lstrip=2)'", shell=True
+                    "git branch --format '%(refname:short)%(HEAD)'", shell=True
                 )
                 .decode()
                 .rstrip()
@@ -18,7 +18,7 @@ class Git:
             sys.exit(0)
 
         self.branches: Sequence[str] = [
-            branch for branch in results.split("\n") if branch
+            branch for branch in results.split("\n") if branch and "*" not in branch
         ]
 
     def delete(self, branches_to_delete: Sequence[str]) -> str:

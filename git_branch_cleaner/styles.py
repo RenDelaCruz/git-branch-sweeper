@@ -1,11 +1,11 @@
 from typing import Final
 
-from InquirerPy import InquirerPyStyle, utils
+from InquirerPy import utils
 
 GREEN: Final[str] = "#1AAE65"
 ORANGE_BOLD_UNDERLINE: Final[str] = "orange bold underline"
 
-DEFAULT_STYLE: Final[InquirerPyStyle] = utils.get_style(
+DEFAULT_STYLE: Final = utils.get_style(
     {
         "question": "bold",
         "answer": "#48A8B5",

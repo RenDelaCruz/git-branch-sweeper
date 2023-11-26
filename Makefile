@@ -5,7 +5,7 @@ $(eval $(ARGS):;@:)
 
 .PHONY: start
 start: ## Executes the command-line interface
-	poetry run python3 -m src.git_branch_cleaner.cli
+	poetry run python3 -m git_branch_cleaner.cli
 
 ## Code Analysis
 

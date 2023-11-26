@@ -13,8 +13,8 @@ class Git:
                 .decode()
                 .rstrip()
             )
-        except subprocess.CalledProcessError as e:
-            print(e.output)
+        except subprocess.CalledProcessError:
+            # Automatically outputs standard error to terminal
             sys.exit(0)
 
         self.branches: Sequence[str] = [

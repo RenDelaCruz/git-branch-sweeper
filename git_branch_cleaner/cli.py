@@ -7,7 +7,9 @@ from git_branch_cleaner.styles import DEFAULT_STYLE, GREEN, ORANGE_BOLD_UNDERLIN
 def main() -> None:
     git = Git()
     if not git.branches:
-        print("Only 1 branch found. Cannot delete the currently checked-out branch.")
+        print(
+            f"Only 1 branch found. Cannot delete the current branch: {git.current_branch}"
+        )
         return
 
     print()
@@ -16,7 +18,7 @@ def main() -> None:
         choices=git.branches,
         style=DEFAULT_STYLE,
         transformer=lambda result: f"{len(result)} branch{'es' if len(result) != 1 else ''} selected",
-        instruction="(use <space> to select)",
+        instruction=f"(use <space> to select)\n  Current branch: {git.current_branch}",
         show_cursor=False,
         raise_keyboard_interrupt=False,
         mandatory=False,

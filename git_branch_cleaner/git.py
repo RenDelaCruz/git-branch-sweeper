@@ -6,7 +6,7 @@ from collections.abc import Sequence
 class Git:
     def __init__(self) -> None:
         try:
-            results = (
+            output = (
                 subprocess.check_output(
                     "git branch --format '%(refname:short)%(HEAD)'", shell=True
                 )
@@ -17,8 +17,12 @@ class Git:
             # Automatically outputs standard error to terminal
             sys.exit(0)
 
+        result = output.split("\n")
+        self.current_branch = next(
+            branch for branch in result if "*" in branch
+        ).removesuffix("*")
         self.branches: Sequence[str] = [
-            branch for branch in results.split("\n") if branch and "*" not in branch
+            branch for branch in result if branch and "*" not in branch
         ]
 
     def delete(self, branches_to_delete: Sequence[str]) -> str:

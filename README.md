@@ -6,7 +6,9 @@
 
 🧹✨ Interactive CLI tool to delete multiple local git branches at once.
 
-```sh
+![example.svg](assets/example.svg)
+
+<!-- ```sh
 ❯ git-branch-cleaner
 
 ? Select branches to delete: (use [space] to select, or [a] to toggle all)
@@ -25,7 +27,7 @@ Deleted branch PROJ-654_old-ticket (was cb0c590).
 Deleted branch PROJ-934_extra-branch (was cb0c590).
 
 All selected branches deleted.
-```
+``` -->
 
 
 ## Installation

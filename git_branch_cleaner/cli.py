@@ -36,7 +36,7 @@ def main() -> None:
     print()
     branch_count = len(selected_branches)
     confirm = inquirer.confirm(
-        message=f"Delete {f'these {branch_count}' if branch_count > 1 else 'this'} branch{'es' if branch_count > 1 else ''}?",
+        message=f"Delete {f'these {branch_count} branches' if branch_count > 1 else f'this branch'}?",
         style=DEFAULT_STYLE,
         default=False,
         raise_keyboard_interrupt=False,

@@ -13,9 +13,9 @@ class Git:
                 .decode()
                 .rstrip()
             )
-        except subprocess.CalledProcessError:
-            # Automatically outputs standard error to terminal
-            sys.exit(1)
+        except subprocess.CalledProcessError as e:
+            print(e.output)
+            sys.exit(0)
 
         self.branches: Sequence[str] = [
             branch for branch in results.split("\n") if branch

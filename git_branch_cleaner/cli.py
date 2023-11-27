@@ -49,7 +49,7 @@ def main() -> None:
 
     output = git.delete(selected_branches)
     print(f"\n{output}")
-    utils.color_print([(GREEN, "All selected branches deleted.")])
+    utils.color_print([(GREEN, "All selected branches deleted. 🧹✨")])
 
 
 if __name__ == "__main__":

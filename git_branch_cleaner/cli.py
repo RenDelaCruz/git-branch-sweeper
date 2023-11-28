@@ -1,15 +1,14 @@
 from InquirerPy import inquirer, utils
 
-from git_branch_cleaner.git import Git
+from git_branch_cleaner.git import Git, GitInitializationError
 from git_branch_cleaner.styles import DEFAULT_STYLE, GREEN, ORANGE_BOLD_UNDERLINE
 
 
 def main() -> None:
-    git = Git()
-    if not git.branches:
-        print(
-            f"Only 1 branch found. Cannot delete the current branch: {git.current_branch}"
-        )
+    try:
+        git = Git()
+    except GitInitializationError as e:
+        print(e)
         return
 
     print()
@@ -48,7 +47,7 @@ def main() -> None:
         return
 
     output = git.delete(selected_branches)
-    print(f"\n{output}")
+    print(f"\n{output}\n")
     utils.color_print([(GREEN, "All selected branches deleted. 🧹✨")])
 
 

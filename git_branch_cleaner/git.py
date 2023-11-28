@@ -1,30 +1,32 @@
-import subprocess
-import sys
 from collections.abc import Sequence
 
 from git_branch_cleaner import shell
 
 
+class GitInitializationError(Exception):
+    pass
+
+
 class Git:
     def __init__(self) -> None:
-        try:
-            output = (
-                subprocess.check_output(
-                    "git branch --format '%(refname:short)%(HEAD)'", shell=True
-                )
-                .decode()
-                .rstrip()
-            )
-        except subprocess.CalledProcessError:
-            # Automatically outputs standard error to terminal
-            sys.exit(0)
+        if not self.is_in_git_repository:
+            raise GitInitializationError("Not in a Git repository.")
 
-        result = output.split("\n")
+        branches = self.get_branches()
+        if not branches:
+            raise GitInitializationError("No branches found.")
+
+        if len(branches) == 1:
+            current_branch = branches[0].removesuffix("*")
+            raise GitInitializationError(
+                f"Only 1 branch found. Cannot delete the current branch: {current_branch}"
+            )
+
         self.current_branch = next(
-            branch for branch in result if "*" in branch
+            branch for branch in branches if "*" in branch
         ).removesuffix("*")
         self.branches: Sequence[str] = [
-            branch for branch in result if branch and "*" not in branch
+            branch for branch in branches if branch and "*" not in branch
         ]
 
     @property

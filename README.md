@@ -4,7 +4,7 @@
 
 # git-branch-cleaner
 
-🧹✨ Interactive CLI tool to delete multiple local git branches at once.
+🧹✨ Interactive CLI tool to delete multiple local Git branches at once.
 
 ![example.svg](assets/example.svg)
 

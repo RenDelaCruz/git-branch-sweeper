@@ -38,7 +38,7 @@ All selected branches deleted. 🧹✨
 ## Installation
 
 ```sh
-pip install git+https://github.com/RenDelaCruz/git-branch-sweeper.git
+pip install git-branch-sweeper
 ```
 
 ## Usage

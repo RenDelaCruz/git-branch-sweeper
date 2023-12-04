@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "git-branch-cleaner"
+name = "git-branch-sweeper"
 version = "0.1.0"
 description = ""
 authors = ["Ren Dela Cruz <ren_delacruz@outlook.com>"]
@@ -14,4 +14,4 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-git-branch-cleaner = "git_branch_cleaner.cli:main"
+git-branch-sweeper = "git_branch_sweeper.cli:main"

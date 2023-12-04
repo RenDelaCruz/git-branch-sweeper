@@ -1,6 +1,6 @@
 from collections.abc import Sequence
 
-from git_branch_cleaner import shell
+from git_branch_sweeper import shell
 
 
 class GitInitializationError(Exception):

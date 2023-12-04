@@ -1,7 +1,7 @@
 from InquirerPy import inquirer, utils
 
-from git_branch_cleaner.git import Git, GitInitializationError
-from git_branch_cleaner.styles import DEFAULT_STYLE, GREEN, ORANGE_BOLD_UNDERLINE
+from git_branch_sweeper.git import Git, GitInitializationError
+from git_branch_sweeper.styles import DEFAULT_STYLE, GREEN, ORANGE_BOLD_UNDERLINE
 
 
 def main() -> None:

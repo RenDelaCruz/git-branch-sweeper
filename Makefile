@@ -7,6 +7,10 @@ $(eval $(ARGS):;@:)
 start: ## Executes the command-line interface
 	poetry run python3 -m git_branch_sweeper.cli
 
+.PHONY: publish
+publish: ## Build and publish the project to PyPI
+	poetry publish --build
+
 ## Code Analysis
 
 .PHONY: format

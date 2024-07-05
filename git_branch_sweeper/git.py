@@ -1,6 +1,6 @@
 from collections.abc import Sequence
 
-from git_branch_sweeper import shell
+from git_branch_sweeper import process
 
 
 class GitInitializationError(Exception):
@@ -31,12 +31,12 @@ class Git:
 
     @property
     def is_in_git_repository(self) -> bool:
-        result = shell.run_command("git rev-parse --is-inside-work-tree")
-        return result == "true"
+        output = process.run(["git", "rev-parse", "--is-inside-work-tree"])
+        return output == "true"
 
     def get_branches(self) -> Sequence[str]:
-        result = shell.run_command("git branch --format '%(refname:short)%(HEAD)'")
-        return result.split("\n") if result else []
+        output = process.run(["git", "branch", "--format", "%(refname:short)%(HEAD)"])
+        return output.replace(" ", "").split("\n") if output else []
 
     def delete(self, branches_to_delete: Sequence[str]) -> str:
-        return shell.run_command(f"git branch -D {' '.join(branches_to_delete)}")
+        return process.run(["git", "branch", "-D", *branches_to_delete])

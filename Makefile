@@ -11,6 +11,10 @@ start: ## Executes the command-line interface
 publish: ## Build and publish the project to PyPI
 	poetry publish --build
 
+.PHONY: shell
+shell: ## Start an IPython shell for manual testing
+	poetry run python3 -m IPython
+
 ## Code Analysis
 
 .PHONY: format

@@ -10,6 +10,9 @@ repository = "https://github.com/RenDelaCruz/git-branch-sweeper"
 python = "^3.10"
 inquirerpy = "^0.3.4"
 
+[tool.poetry.group.dev.dependencies]
+ipython = "^8.26.0"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

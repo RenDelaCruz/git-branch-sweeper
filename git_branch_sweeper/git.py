@@ -28,15 +28,29 @@ class Git:
         self.branches: Sequence[str] = [
             branch for branch in branches if branch and "*" not in branch
         ]
+        self.default_branch = self.get_default_branch()
 
     @property
     def is_in_git_repository(self) -> bool:
         result = shell.run_command("git rev-parse --is-inside-work-tree")
         return result == "true"
 
-    def get_branches(self) -> Sequence[str]:
-        result = shell.run_command("git branch --format '%(refname:short)%(HEAD)'")
-        return result.split("\n") if result else []
+    def get_branches(self, *, merged: bool | None = None) -> Sequence[str]:
+        if merged is not None:
+            extra = "--merged" if merged else "--no-merged"
+        else:
+            extra = ""
+
+        branches = shell.run_command(
+            f"git branch --format '%(refname:short)%(HEAD)' {extra}"
+        )
+        return branches.split("\n") if branches else []
+
+    def get_default_branch(self) -> str:
+        remote = shell.run_command("git remote show")
+        return shell.run_command(
+            f"basename $(git symbolic-ref --short refs/remotes/{remote}/HEAD)"
+        )
 
     def delete(self, branches_to_delete: Sequence[str]) -> str:
         return shell.run_command(f"git branch -D {' '.join(branches_to_delete)}")

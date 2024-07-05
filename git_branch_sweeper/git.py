@@ -9,7 +9,7 @@ class GitInitializationError(Exception):
 
 class Git:
     def __init__(self) -> None:
-        if not self.is_in_git_repository:
+        if not self.is_in_git_repository():
             raise GitInitializationError("Not in a Git repository.")
 
         branches = self.get_branches()
@@ -29,7 +29,6 @@ class Git:
             branch for branch in branches if branch and "*" not in branch
         ]
 
-    @property
     def is_in_git_repository(self) -> bool:
         output = process.run(["git", "rev-parse", "--is-inside-work-tree"])
         return output == "true"

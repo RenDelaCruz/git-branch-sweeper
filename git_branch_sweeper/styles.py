@@ -2,17 +2,19 @@ from typing import Final
 
 from InquirerPy import utils
 
-BLUE: Final[str] = "#48A8B5"
-GREEN: Final[str] = "#1BB266"
-ORANGE_BOLD_UNDERLINE: Final[str] = "orange bold underline"
+BLUE: Final[str] = "#48a8b5"
+GREEN: Final[str] = "#98c379"
+ORANGE: Final[str] = "orange"
+BOLD: Final[str] = "bold"
 
 DEFAULT_STYLE: Final = utils.get_style(
     {
-        "question": "bold",
+        "question": BOLD,
         "answer": BLUE,
         "pointer": BLUE,
-        "questionmark": "orange bold",
-        "answermark": "orange bold",
+        "questionmark": " ".join([ORANGE, BOLD]),
+        "answermark": " ".join([ORANGE, BOLD]),
+        "separator": GREEN,
     },
     style_override=False,
 )

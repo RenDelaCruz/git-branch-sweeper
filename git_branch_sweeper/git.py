@@ -25,19 +25,40 @@ class Git:
         self.current_branch = next(
             branch for branch in branches if "*" in branch
         ).removesuffix("*")
-        self.branches: Sequence[str] = [
-            branch for branch in branches if branch and "*" not in branch
+
+        self.default_branch = self.get_default_branch()
+        merged_branches = self.get_branches(
+            merged=True, base_branch=self.default_branch
+        )
+
+        self.merged_branches = [
+            branch
+            for branch in merged_branches
+            if "*" not in branch and branch != self.default_branch
+        ]
+        self.unmerged_branches = [
+            branch
+            for branch in branches
+            if "*" not in branch
+            and branch != self.default_branch
+            and branch not in self.merged_branches
         ]
 
     def is_in_git_repository(self) -> bool:
         output = process.run(["git", "rev-parse", "--is-inside-work-tree"])
         return output == "true"
 
-    def get_branches(self, *, merged: bool | None = None) -> Sequence[str]:
+    def get_branches(
+        self, *, merged: bool | None = None, base_branch: str | None = None
+    ) -> Sequence[str]:
         branch_command = ["git", "branch", "--format", "%(refname:short)%(HEAD)"]
+
         if merged is not None:
             merged_flag = "--merged" if merged else "--no-merged"
             branch_command.append(merged_flag)
+
+            if base_branch:
+                branch_command.append(base_branch)
 
         output = process.run(branch_command)
         return output.replace(" ", "").split("\n") if output else []

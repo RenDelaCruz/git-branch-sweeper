@@ -25,8 +25,13 @@ class Git:
         self.current_branch = next(
             branch for branch in branches if "*" in branch
         ).removesuffix("*")
-
         self.default_branch = self.get_default_branch()
+
+        if len(branches) == 2 and self.current_branch != self.default_branch:
+            raise GitInitializationError(
+                f"Only 1 other branch found. Cannot delete the default branch: {self.default_branch}"
+            )
+
         merged_branches = self.get_branches(
             merged=True, base_branch=self.default_branch
         )

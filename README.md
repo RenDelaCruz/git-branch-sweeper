@@ -17,19 +17,19 @@ $ git-branch-sweeper
 
 ? Select branches to delete: (use [space] to select, or [a] to toggle all)
   Current branch: PROJ-435_current-task 
-  ◉ PROJ-654_old-ticket
-❯ ◉ PROJ-934_extra-branch 
-  ○ PROJ-324_testing-feat
-  ○ main
+  ◉ PROJ-654/old-ticket
+❯ ◉ PROJ-934/extra-branch 
+  ○ PROJ-324/testing-feat
+
 
 Branches for deletion:
-1. PROJ-654_old-ticket 
-2. PROJ-934_extra-branch 
+1. PROJ-654/old-ticket 
+2. PROJ-934/extra-branch 
 
 ? Delete these 2 branches? (y/N) Yes
 
-Deleted branch PROJ-654_old-ticket (was cb0c590).
-Deleted branch PROJ-934_extra-branch (was cb0c590).
+Deleted branch PROJ-654/old-ticket (was cb0c590).
+Deleted branch PROJ-934/extra-branch (was cb0c590).
 
 All selected branches deleted. 🧹✨
 ``` -->

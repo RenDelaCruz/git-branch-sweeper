@@ -19,6 +19,9 @@ def main() -> None:
         (git.merged_branches, f"Merged into {git.default_branch}", True),
         (git.unmerged_branches, "Not merged", False),
     ):
+        if not branches:
+            continue
+
         max_branch_length = get_max_length_in_sequence(branches)
         heading = get_fieldset_heading(title=title, min_length=max_branch_length)
         choices.extend(

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "git-branch-sweeper"
-version = "1.0.0"
+version = "1.1.0"
 description = "Interactive CLI tool to delete multiple local git branches at once."
 authors = ["Ren Dela Cruz <ren_delacruz@outlook.com>"]
 readme = "README.md"

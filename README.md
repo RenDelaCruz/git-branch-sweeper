@@ -35,9 +35,9 @@ $ git-branch-sweeper
 
 ? Delete these 3 branches? (y/N) Yes
 
-Deleted branch PROJ-654/old-ticket (was cb0c590).
-Deleted branch PROJ-934/extra-branch (was cb0c590).
-Deleted branch PROJ-324/testing-feat (was 2b2e997).
+  ◉ Deleted branch PROJ-654/old-ticket (was cb0c590).
+  ◉ Deleted branch PROJ-934/extra-branch (was cb0c590).
+  ◉ Deleted branch PROJ-324/testing-feat (was 2b2e997).
 
 ✨🧹 All selected branches deleted. 🧹✨
 ``` -->

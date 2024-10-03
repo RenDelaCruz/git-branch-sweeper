@@ -3,7 +3,7 @@ from InquirerPy.base.control import Choice
 from InquirerPy.separator import Separator
 
 from git_branch_sweeper.git import Git, GitInitializationError
-from git_branch_sweeper.styles import BOLD, DEFAULT_STYLE, ORANGE
+from git_branch_sweeper.styles import BOLD, DEFAULT_STYLE, ORANGE, RED
 from git_branch_sweeper.utils import get_fieldset_heading, get_max_length_in_sequence
 
 
@@ -16,8 +16,16 @@ def main() -> None:
 
     choices: list[Choice | Separator] = []
     for branches, title, enabled in (
-        (git.merged_branches, f"Merged into {git.default_branch}", True),
-        (git.unmerged_branches, "Not merged", False),
+        (
+            git.merged_branches,
+            f"Merged into {git.default_branch}",
+            True,
+        ),
+        (
+            git.unmerged_branches,
+            "Not merged" if git.merged_branches else "Available branches",
+            False,
+        ),
     ):
         if not branches:
             continue
@@ -71,8 +79,12 @@ def main() -> None:
         print("No branches deleted.")
         return
 
-    output = git.delete(selected_branches)
-    print(f"\n{output}\n")
+    print()
+    deleted_branches = git.delete(selected_branches)
+    for deleted_branch in deleted_branches:
+        utils.color_print([(RED, "  ◉ "), ("", deleted_branch)])
+
+    print()
     utils.color_print([(BOLD, "✨🧹 All selected branches deleted. 🧹✨")])
 
 

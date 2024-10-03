@@ -5,6 +5,7 @@ from InquirerPy import utils
 BLUE: Final[str] = "#48a8b5"
 GREEN: Final[str] = "#98c379"
 ORANGE: Final[str] = "orange"
+RED: Final[str] = "red"
 BOLD: Final[str] = "bold"
 
 DEFAULT_STYLE: Final = utils.get_style(

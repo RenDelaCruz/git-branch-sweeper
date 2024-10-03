@@ -75,5 +75,6 @@ class Git:
         )
         return output.removeprefix(f"{remote}/")
 
-    def delete(self, branches_to_delete: Sequence[str]) -> str:
-        return process.run(["git", "branch", "-D", *branches_to_delete])
+    def delete(self, branches_to_delete: Sequence[str]) -> Sequence[str]:
+        output = process.run(["git", "branch", "-D", *branches_to_delete])
+        return output.split("\n")
